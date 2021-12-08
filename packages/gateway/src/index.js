@@ -5,6 +5,9 @@ import { getCidFromSubdomainUrl } from './utils/cid.js'
 /**
  * @typedef {Object} Env
  * @property {string} IPFS_GATEWAY
+ * @property {string} VERSION
+ * @property {string} ENV
+ * @property {string} [SENTRY_DSN]
  */
 
 /**
@@ -24,9 +27,10 @@ async function handleRequest(request, env) {
 /**
  * @param {Error} error
  * @param {Request} request
+ * @param {Env} env
  */
-function serverError(error, request) {
-  return addCorsHeaders(request, errorHandler(error))
+function serverError(error, request, env) {
+  return addCorsHeaders(request, errorHandler(error, request, env))
 }
 
 export default {
@@ -34,7 +38,7 @@ export default {
     try {
       return await handleRequest(request, env)
     } catch (error) {
-      return serverError(error, request)
+      return serverError(error, request, env)
     }
   },
 }
