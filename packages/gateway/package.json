@@ -10,17 +10,21 @@
     "dev": "miniflare --watch --debug",
     "deploy": "wrangler publish --env production",
     "pretest": "npm run build ",
-    "test": "npm-run-all -p -r mock:ipfs.io test:worker",
+    "test": "npm-run-all -p -r mock:ipfs.io test:worker -s test:size",
     "test:worker": "ava --verbose test/*.spec.js",
+    "test:size": "bundlesize",
     "mock:ipfs.io": "smoke -p 9081 test/mocks/ipfs.io"
   },
   "dependencies": {
+    "itty-router": "^2.4.5",
     "multiformats": "^9.5.2",
+    "p-any": "^4.0.0",
     "toucan-js": "^2.5.0"
   },
   "devDependencies": {
     "@sentry/cli": "^1.71.0",
     "ava": "^3.15.0",
+    "bundlesize": "^0.18.1",
     "esbuild": "^0.14.2",
     "git-rev-sync": "^3.0.1",
     "miniflare": "^2.0.0-rc.2",
@@ -29,5 +33,11 @@
     "smoke": "^3.1.1"
   },
   "author": "Vasco Santos <santos.vasco10@gmail.com>",
-  "license": "(Apache-2.0 AND MIT)"
+  "license": "(Apache-2.0 AND MIT)",
+  "bundlesize": [
+    {
+      "path": "./dist/index.mjs",
+      "maxSize": "1 MB"
+    }
+  ]
 }

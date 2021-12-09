@@ -46,3 +46,11 @@ test('Gets content', async (t) => {
   )
   t.is(await response.text(), 'Hello gateway.nft.storage!')
 })
+
+test('Metrics', async (t) => {
+  const { mf } = t.context
+
+  const response = await mf.dispatchFetch('http://localhost:8787/metrics')
+  const metricsResponse = await response.text()
+  t.is(metricsResponse.includes('web3storage_users_total'), true)
+})
