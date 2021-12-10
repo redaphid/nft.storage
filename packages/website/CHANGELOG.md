@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.17.1](https://www.github.com/nftstorage/nft.storage/compare/website-v1.17.0...website-v1.17.1) (2021-12-10)
+
+
+### Bug Fixes
+
+* Add Makersplace logo to homepage + make Holaplex logo transparent ([#934](https://www.github.com/nftstorage/nft.storage/issues/934)) ([da7af46](https://www.github.com/nftstorage/nft.storage/commit/da7af468c98d88d34cb56c4322f5d13d212ecedf))
+
 ## [1.17.0](https://www.github.com/nftstorage/nft.storage/compare/website-v1.16.1...website-v1.17.0) (2021-12-10)
 
 
