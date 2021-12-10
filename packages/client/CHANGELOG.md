@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.2.0](https://www.github.com/nftstorage/nft.storage/compare/nft.storage-v5.1.3...nft.storage-v5.2.0) (2021-12-10)
+
+
+### Features
+
+* blog ([#838](https://www.github.com/nftstorage/nft.storage/issues/838)) ([ad1aa99](https://www.github.com/nftstorage/nft.storage/commit/ad1aa99733f7faf00128e20ee481eef89043631b))
+* update examples ([#894](https://www.github.com/nftstorage/nft.storage/issues/894)) ([8387be3](https://www.github.com/nftstorage/nft.storage/commit/8387be3cae6b9de66bfd43ac5df6868e190dfc9f))
+
+
+### Bug Fixes
+
+* update niftysave deps and lock ipld/jd-dag-json to 8.0.4 ([#881](https://www.github.com/nftstorage/nft.storage/issues/881)) ([af7524f](https://www.github.com/nftstorage/nft.storage/commit/af7524fbf1240b804bbbe356afb90ec4d2bd86b1))
+
+
+### Changes
+
+* update licences to dual mit and apache ([#909](https://www.github.com/nftstorage/nft.storage/issues/909)) ([307a8e2](https://www.github.com/nftstorage/nft.storage/commit/307a8e20526bef0f3ac516eb60fcd4fd82a0d65e))
+
 ### [5.1.3](https://www.github.com/nftstorage/nft.storage/compare/nft.storage-v5.1.2...nft.storage-v5.1.3) (2021-12-03)
 
 
