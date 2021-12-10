@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.11.2](https://www.github.com/nftstorage/nft.storage/compare/api-v2.11.1...api-v2.11.2) (2021-12-10)
+
+
+### Changes
+
+* add METAPLEX_AUTH_TOKEN to constants.js ([#924](https://www.github.com/nftstorage/nft.storage/issues/924)) ([35cfc16](https://www.github.com/nftstorage/nft.storage/commit/35cfc1621f8ff0db642736cbb0a82228d3a8d5ed))
+
 ### [2.11.1](https://www.github.com/nftstorage/nft.storage/compare/api-v2.11.0...api-v2.11.1) (2021-12-09)
 
 
