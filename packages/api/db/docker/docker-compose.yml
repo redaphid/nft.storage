@@ -26,6 +26,18 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_PORT: 5432
+  pgadmin:
+    image: postgrest/pgadmin4:v9.0.0
+    depends_on:
+      - db
+    restart: always
+    environment:
+      PGADMIN_ENABLE_TLS: 'false'
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5050:80
+
   ipfs0:
     container_name: ipfs0
     image: ipfs/go-ipfs:latest
