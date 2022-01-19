@@ -1,5 +1,8 @@
 let API = /** @type {string} **/ process.env.NEXT_PUBLIC_API || ''
-let MAGIC_TOKEN = /** @type {string} **/ process.env.NEXT_PUBLIC_MAGIC || ''
+let MAGIC_TOKEN =
+  /** @type {string} **/ process.env.NEXT_PUBLIC_MAGIC ||
+  process.env.MAGIC_TOKEN ||
+  ''
 
 if (globalThis.window) {
   switch (location.host) {
@@ -15,13 +18,17 @@ if (globalThis.window) {
       API = 'https://api.nft.storage'
       MAGIC_TOKEN = 'pk_live_20429A8C4CDEDCF7'
       break
-    case 'localhost:4000':
-      API = 'http://localhost:8787'
-      MAGIC_TOKEN = 'pk_live_DEE0E8D1EF2DA418'
-      break
     default:
-      throw new Error(`Unknown host: ${location.host}`)
+      break
   }
+}
+
+if (!API) {
+  throw new Error('API URL not set')
+}
+
+if (!MAGIC_TOKEN) {
+  throw new Error('MAGIC_TOKEN not set')
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
