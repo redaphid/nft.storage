@@ -15,8 +15,12 @@ if (globalThis.window) {
       API = 'https://api.nft.storage'
       MAGIC_TOKEN = 'pk_live_20429A8C4CDEDCF7'
       break
-    default:
+    case 'localhost:4000':
+      API = 'http://localhost:8787'
+      MAGIC_TOKEN = 'pk_live_DEE0E8D1EF2DA418'
       break
+    default:
+      throw new Error(`Unknown host: ${location.host}`)
   }
 }
 
