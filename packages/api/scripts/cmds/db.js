@@ -55,7 +55,6 @@ export async function dbCmd(opts) {
       'build',
       '--no-cache',
     ])
-
     await execa('docker-compose', [
       '--file',
       composePath,
@@ -72,6 +71,7 @@ export async function dbCmd(opts) {
     if ((await isPortReachable(5432)) || (await isPortReachable(3000))) {
       console.error('⚠️ Docker project is already running.')
     }
+    await execa('docker-compose', ['--file', composePath, 'down'])
     await execa('docker-compose', [
       '--file',
       composePath,
