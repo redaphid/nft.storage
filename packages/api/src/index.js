@@ -8,6 +8,7 @@ import { tokensDelete } from './routes/tokens-delete.js'
 import { tokensCreate } from './routes/tokens-create.js'
 import { tokensList } from './routes/tokens-list.js'
 import { login } from './routes/login.js'
+import { loggedin } from './routes/loggedin.js'
 import { nftUpload } from './routes/nfts-upload.js'
 import { nftCheck } from './routes/nfts-check.js'
 import { nftGet } from './routes/nfts-get.js'
@@ -78,6 +79,7 @@ const psa = (handler, mode) =>
 
 // Login
 r.add('post', '/login', withMode(login, RO), [postCors])
+r.add('get', '/login', withMode(loggedin, RO), [postCors])
 
 // Pinning
 r.add('get', '/pins', psa(pinsList, RO), [postCors])

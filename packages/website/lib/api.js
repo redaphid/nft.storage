@@ -9,13 +9,13 @@ let token
 let created = Date.now() / 1000
 
 export async function getToken() {
-  // const magic = getMagic()
-  // const now = Date.now() / 1000
-  // if (token === undefined || now - created > LIFESPAN - 10) {
-  //   token = await magic.user.getIdToken({ lifespan: LIFESPAN })
-  //   created = Date.now() / 1000
-  // }
-  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDY1MDA3QTczOWFiN0FDNWM1MzcxNjEyNDliODEyNTBFNDllMjg1M0MiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTc1NDczNjYzOCwibmFtZSI6Im1haW4ifQ.wKwJIRXXHsgwVp8mOQp6r3_F4Lz5lnoAkgVP8wqwA_Y'
+  const magic = getMagic()
+  const now = Date.now() / 1000
+  if (token === undefined || now - created > LIFESPAN - 10) {
+    token = await magic.user.getIdToken({ lifespan: LIFESPAN })
+    created = Date.now() / 1000
+  }
+  return token
 }
 
 /**
