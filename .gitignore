@@ -43,3 +43,4 @@ site/public
 public/sitemap.xml
 public/robots.txt
 packages/api/docker/compose
+tmp/
