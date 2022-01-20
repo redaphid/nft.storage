@@ -54,13 +54,7 @@ export function maybeCapture(err, { log }) {
   let code = err.code || 'HTTP_ERROR'
   let message = err.message
   let status = err.status || 500
-  throw new Error(
-    ` Look at me, crashing our server intentionally. ${message}, status: ${status}, code: ${code}, data: ${JSON.stringify(
-      err.data,
-      null,
-      2
-    )}`
-  )
+
   switch (err.code) {
     case ErrorUserNotFound.CODE:
     case ErrorTokenNotFound.CODE:
