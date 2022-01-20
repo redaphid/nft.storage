@@ -1,4 +1,36 @@
 // let MAGIC_SECRET_KEY, SALT, PINATA_JWT, SENTRY_DSN, DATABASE_TOKEN, CLUSTER_SERVICE, LOGTAIL_TOKEN, MAILCHIMP_API_KEY, METAPLEX_AUTH_TOKEN
+import { config } from 'dotenv'
+
+config({ debug: true })
+
+const {
+  MAGIC_SECRET_KEY,
+  SALT,
+  SENTRY_DSN,
+  DATABASE_TOKEN,
+  CLUSTER_SERVICE,
+  LOGTAIL_TOKEN,
+  MAILCHIMP_API_KEY,
+  CLUSTER_API_URL,
+  DATABASE_URL,
+  DEBUG,
+} = process.env
+
+if (!SALT) {
+  throw new Error('SALT is not defined')
+}
+
+if (!DATABASE_TOKEN) {
+  throw new Error('DATABASE_TOKEN is not defined')
+}
+
+if (!DATABASE_URL) {
+  throw new Error('DATABASE_URL is not defined')
+}
+
+if (!LOGTAIL_TOKEN) {
+  throw new Error('LOGTAIL_TOKEN is not defined')
+}
 
 export const secrets = {
   salt: SALT,
@@ -24,6 +56,14 @@ switch (CLUSTER_SERVICE) {
   default:
     clusterUrl = CLUSTER_API_URL
     break
+}
+
+if (!clusterUrl) {
+  throw new Error('CLUSTER_API_URL or CLUSTER_SERVICE must be set')
+}
+
+if (!CLUSTER_BASIC_AUTH_TOKEN) {
+  throw new Error('CLUSTER_BASIC_AUTH_TOKEN is not defined')
 }
 
 export const cluster = {

@@ -1,8 +1,7 @@
 let API = /** @type {string} **/ process.env.NEXT_PUBLIC_API || ''
 let MAGIC_TOKEN =
-  /** @type {string} **/ process.env.NEXT_PUBLIC_MAGIC ||
-  process.env.MAGIC_TOKEN ||
-  ''
+  /** @type {string} **/
+  process.env.NEXT_PUBLIC_MAGIC || process.env.MAGIC_TOKEN
 
 if (globalThis.window) {
   switch (location.host) {
@@ -18,6 +17,7 @@ if (globalThis.window) {
       API = 'https://api.nft.storage'
       MAGIC_TOKEN = 'pk_live_20429A8C4CDEDCF7'
       break
+
     default:
       break
   }
@@ -28,7 +28,9 @@ if (!API) {
 }
 
 if (!MAGIC_TOKEN) {
-  throw new Error('MAGIC_TOKEN not set')
+  throw new Error(
+    'MAGIC_TOKEN and NEXT_PUBLIC_MAGIC are not set. One of them must be set.'
+  )
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
