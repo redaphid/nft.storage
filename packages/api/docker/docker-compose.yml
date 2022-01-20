@@ -31,6 +31,15 @@ services:
     volumes:
       - ./compose/ipfs0:/data/ipfs
 
+  auth_proxy:
+    image: nginx
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    network_mode: host
+    # ports:
+    #   - 4001:8080
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
   cluster0:
     image: ipfs/ipfs-cluster:latest
     depends_on:
