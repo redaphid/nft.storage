@@ -36,5 +36,11 @@ export function getContext(event, params) {
     debug: isDebug,
     sentry,
   })
-  return { params, db, log }
+  const logTrap = new Proxy(log, {
+    get: (target, prop) => {
+      console.log(JSON.stringify({ target, prop, arguments }, null, 2))
+      return Reflect.get(target, prop, ...arguments)
+    },
+  })
+  return { params, db, log: logTrap }
 }
