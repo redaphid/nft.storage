@@ -11,6 +11,9 @@ let created = Date.now() / 1000
 export async function getToken() {
   const magic = getMagic()
   const now = Date.now() / 1000
+  const loggedIn = await getIsLoggedIn()
+  if (loggedIn) return token
+
   if (token === undefined || now - created > LIFESPAN - 10) {
     token = await magic.user.getIdToken({ lifespan: LIFESPAN })
     created = Date.now() / 1000
@@ -134,4 +137,15 @@ export async function getVersion() {
   } else {
     throw new Error(`failed to get version ${res.status}`)
   }
+}
+
+export async function getIsLoggedIn() {
+  const res = await fetch(`${API}/login`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + (await getToken()),
+    },
+  })
+  return res.ok
 }
