@@ -50,6 +50,7 @@ describe('Pin add ', () => {
       body: JSON.stringify({
         cid,
         name: 'pin-everything',
+        origins: ['multiaddr1', 'multiaddr2'],
         meta: { key: 'value' },
       }),
     })
@@ -61,7 +62,7 @@ describe('Pin add ', () => {
         cid,
         meta: { key: 'value' },
         name: 'pin-everything',
-        origins: null,
+        origins: ['multiaddr1', 'multiaddr2'],
       },
       'Server responded with expected data for pin'
     )
@@ -106,6 +107,7 @@ describe('Pin add ', () => {
       body: JSON.stringify({
         cid,
         name: 'pin-everything',
+        origins: ['multiaddr1', 'multiaddr2'],
         meta: { key: 'value' },
       }),
     })
@@ -117,7 +119,7 @@ describe('Pin add ', () => {
         cid,
         meta: { key: 'value' },
         name: 'pin-everything',
-        origins: null,
+        origins: ['multiaddr1', 'multiaddr2'],
       },
       'Server responded with expected data for second pin'
     )

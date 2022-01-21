@@ -656,7 +656,6 @@ export interface paths {
       parameters: {
         body: {
           args: {
-            /** Format: json */
             data: string
           }
         }
@@ -676,7 +675,6 @@ export interface paths {
       parameters: {
         body: {
           args: {
-            /** Format: text[] */
             cids: string
           }
         }
@@ -713,313 +711,184 @@ export interface paths {
 export interface definitions {
   auth_key: {
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Primary Key.<pk/>
      */
     id: number
-    /** Format: text */
     name: string
-    /** Format: text */
     secret: string
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Foreign Key to `user.id`.<fk table='user' column='id'/>
      */
     user_id: number
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     inserted_at: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     updated_at: string
-    /** Format: timestamp with time zone */
     deleted_at?: string
   }
   content: {
     /**
-     * Format: text
-     * @description Note:
+     * Note:
      * This is a Primary Key.<pk/>
      */
     cid: string
-    /** Format: bigint */
     dag_size?: number
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     inserted_at: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     updated_at: string
   }
   metric: {
     /**
-     * Format: text
-     * @description Note:
+     * Note:
      * This is a Primary Key.<pk/>
      */
     name: string
-    /** Format: bigint */
     value: number
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     inserted_at: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     updated_at: string
   }
   pin: {
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Primary Key.<pk/>
      */
     id: number
-    /** Format: public.pin_status_type */
     status: 'PinError' | 'PinQueued' | 'Pinned' | 'Pinning'
     /**
-     * Format: text
-     * @description Note:
+     * Note:
      * This is a Foreign Key to `content.cid`.<fk table='content' column='cid'/>
      */
     content_cid: string
-    /** Format: public.service_type */
     service: 'Pinata' | 'IpfsCluster' | 'IpfsCluster2' | 'IpfsCluster3'
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     inserted_at: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     updated_at: string
   }
   upload: {
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Primary Key.<pk/>
      */
     id: number
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Foreign Key to `user.id`.<fk table='user' column='id'/>
      */
     user_id: number
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Foreign Key to `auth_key.id`.<fk table='auth_key' column='id'/>
      */
     key_id?: number
     /**
-     * Format: text
-     * @description Note:
+     * Note:
      * This is a Foreign Key to `content.cid`.<fk table='content' column='cid'/>
      */
     content_cid: string
-    /** Format: text */
     source_cid: string
-    /** Format: text */
     mime_type?: string
-    /** Format: public.upload_type */
     type: 'Car' | 'Blob' | 'Multipart' | 'Remote' | 'Nft'
-    /** Format: text */
     name?: string
-    /** Format: jsonb */
     files?: string
-    /** Format: jsonb */
     origins?: string
-    /** Format: jsonb */
     meta?: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     inserted_at: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     updated_at: string
-    /** Format: timestamp with time zone */
     deleted_at?: string
   }
   user: {
     /**
-     * Format: bigint
-     * @description Note:
+     * Note:
      * This is a Primary Key.<pk/>
      */
     id: number
-    /** Format: text */
     magic_link_id?: string
-    /** Format: text */
     github_id: string
-    /** Format: text */
     name: string
-    /** Format: text */
     picture?: string
-    /** Format: text */
     email: string
-    /** Format: text */
     public_address?: string
-    /** Format: jsonb */
     github?: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     inserted_at: string
-    /**
-     * Format: timestamp with time zone
-     * @default timezone('utc'::text, now())
-     */
     updated_at: string
   }
 }
 
 export interface parameters {
-  /** @description Preference */
+  /** Preference */
   preferParams: 'params=single-object'
-  /** @description Preference */
+  /** Preference */
   preferReturn: 'return=representation' | 'return=minimal' | 'return=none'
-  /** @description Preference */
+  /** Preference */
   preferCount: 'count=none'
-  /** @description Filtering Columns */
+  /** Filtering Columns */
   select: string
-  /** @description On Conflict */
+  /** On Conflict */
   on_conflict: string
-  /** @description Ordering */
+  /** Ordering */
   order: string
-  /** @description Limiting and Pagination */
+  /** Limiting and Pagination */
   range: string
-  /**
-   * @description Limiting and Pagination
-   * @default items
-   */
+  /** Limiting and Pagination */
   rangeUnit: string
-  /** @description Limiting and Pagination */
+  /** Limiting and Pagination */
   offset: string
-  /** @description Limiting and Pagination */
+  /** Limiting and Pagination */
   limit: string
-  /** @description auth_key */
+  /** auth_key */
   'body.auth_key': definitions['auth_key']
-  /** Format: bigint */
   'rowFilter.auth_key.id': string
-  /** Format: text */
   'rowFilter.auth_key.name': string
-  /** Format: text */
   'rowFilter.auth_key.secret': string
-  /** Format: bigint */
   'rowFilter.auth_key.user_id': string
-  /** Format: timestamp with time zone */
   'rowFilter.auth_key.inserted_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.auth_key.updated_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.auth_key.deleted_at': string
-  /** @description content */
+  /** content */
   'body.content': definitions['content']
-  /** Format: text */
   'rowFilter.content.cid': string
-  /** Format: bigint */
   'rowFilter.content.dag_size': string
-  /** Format: timestamp with time zone */
   'rowFilter.content.inserted_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.content.updated_at': string
-  /** @description metric */
+  /** metric */
   'body.metric': definitions['metric']
-  /** Format: text */
   'rowFilter.metric.name': string
-  /** Format: bigint */
   'rowFilter.metric.value': string
-  /** Format: timestamp with time zone */
   'rowFilter.metric.inserted_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.metric.updated_at': string
-  /** @description pin */
+  /** pin */
   'body.pin': definitions['pin']
-  /** Format: bigint */
   'rowFilter.pin.id': string
-  /** Format: public.pin_status_type */
   'rowFilter.pin.status': string
-  /** Format: text */
   'rowFilter.pin.content_cid': string
-  /** Format: public.service_type */
   'rowFilter.pin.service': string
-  /** Format: timestamp with time zone */
   'rowFilter.pin.inserted_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.pin.updated_at': string
-  /** @description upload */
+  /** upload */
   'body.upload': definitions['upload']
-  /** Format: bigint */
   'rowFilter.upload.id': string
-  /** Format: bigint */
   'rowFilter.upload.user_id': string
-  /** Format: bigint */
   'rowFilter.upload.key_id': string
-  /** Format: text */
   'rowFilter.upload.content_cid': string
-  /** Format: text */
   'rowFilter.upload.source_cid': string
-  /** Format: text */
   'rowFilter.upload.mime_type': string
-  /** Format: public.upload_type */
   'rowFilter.upload.type': string
-  /** Format: text */
   'rowFilter.upload.name': string
-  /** Format: jsonb */
   'rowFilter.upload.files': string
-  /** Format: jsonb */
   'rowFilter.upload.origins': string
-  /** Format: jsonb */
   'rowFilter.upload.meta': string
-  /** Format: timestamp with time zone */
   'rowFilter.upload.inserted_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.upload.updated_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.upload.deleted_at': string
-  /** @description user */
+  /** user */
   'body.user': definitions['user']
-  /** Format: bigint */
   'rowFilter.user.id': string
-  /** Format: text */
   'rowFilter.user.magic_link_id': string
-  /** Format: text */
   'rowFilter.user.github_id': string
-  /** Format: text */
   'rowFilter.user.name': string
-  /** Format: text */
   'rowFilter.user.picture': string
-  /** Format: text */
   'rowFilter.user.email': string
-  /** Format: text */
   'rowFilter.user.public_address': string
-  /** Format: jsonb */
   'rowFilter.user.github': string
-  /** Format: timestamp with time zone */
   'rowFilter.user.inserted_at': string
-  /** Format: timestamp with time zone */
   'rowFilter.user.updated_at': string
 }
 
