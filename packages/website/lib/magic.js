@@ -1,7 +1,7 @@
 import { Magic } from 'magic-sdk'
 import { OAuthExtension } from '@magic-ext/oauth'
 import constants from './constants'
-import { getIsLoggedIn } from './api'
+
 /**
  * @typedef {import('@magic-sdk/provider').SDKBase} SDKBase
  */
@@ -50,7 +50,14 @@ export async function login(token, type = 'magic', data = {}, version = '') {
 }
 
 export async function isLoggedIn() {
-  return await getIsLoggedIn()
+  try {
+    const meta = await getMagic().user.getMetadata()
+    return {
+      ...meta, // we dont actually need the user info
+    }
+  } catch {
+    // do nothing
+  }
 }
 
 /**

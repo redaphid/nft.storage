@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { isLoggedIn } from './magic.js'
 import { useQuery } from 'react-query'
 import { useRouter } from 'next/router'
-// import * as Sentry from '@sentry/nextjs'
+import * as Sentry from '@sentry/nextjs'
 
 /**
  * User Hook
@@ -20,11 +20,12 @@ export function useUser({ redirectTo, redirectIfFound, enabled } = {}) {
     isLoggedIn,
     { enabled }
   )
-  const hasUser = data
-  // if (user) {
-  //   // @ts-ignore
-  //   Sentry.setUser(user)
-  // }
+  const user = data
+  const hasUser = Boolean(user)
+  if (user) {
+    // @ts-ignore
+    Sentry.setUser(user)
+  }
 
   useEffect(() => {
     if (!redirectTo || status === 'loading') {
@@ -40,5 +41,5 @@ export function useUser({ redirectTo, redirectIfFound, enabled } = {}) {
     }
   }, [redirectTo, redirectIfFound, status, hasUser, router, enabled])
 
-  return { status, error, isFetching }
+  return { status, user, error, isFetching }
 }
