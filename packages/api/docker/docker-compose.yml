@@ -8,6 +8,7 @@ services:
   db_setup:
     image: nftstorage/api:latest
     entrypoint: './scripts/cli.js db-sql --cargo --testing --reset'
+    network_mode: host
     depends_on:
       - db
   rest:
