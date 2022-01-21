@@ -1,12 +1,17 @@
 version: '3.6'
 services:
+  web:
+    image: redaphid/nftstorage-website:latest
+    network_mode: host
+    depends_on:
+      - api
   api:
-    image: nftstorage/api:latest
+    image: redaphid/nftstorage-api:latest
     network_mode: host
     depends_on:
       - db_setup
   db_setup:
-    image: nftstorage/api:latest
+    image: redaphid/nftstorage-api:latest
     entrypoint: './scripts/cli.js db-sql --cargo --testing --reset'
     network_mode: host
     depends_on:
