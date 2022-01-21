@@ -1,8 +1,7 @@
 import { Magic } from 'magic-sdk'
 import { OAuthExtension } from '@magic-ext/oauth'
 import constants from './constants'
-import { getIsLoggedIn } from './api'
-
+import { getToken } from './api'
 /**
  * @typedef {import('@magic-sdk/provider').SDKBase} SDKBase
  */
@@ -51,7 +50,7 @@ export async function login(token, type = 'magic', data = {}, version = '') {
 }
 
 export async function isLoggedIn() {
-  return await getIsLoggedIn()
+  return await getToken()
 }
 
 /**
