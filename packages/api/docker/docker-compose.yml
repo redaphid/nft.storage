@@ -1,5 +1,8 @@
 version: '3.6'
 services:
+  api:
+    image: nftstorage/api:latest
+    network_mode: host
   rest:
     image: postgrest/postgrest:v9.0.0
     depends_on:
