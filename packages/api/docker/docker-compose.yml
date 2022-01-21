@@ -39,8 +39,6 @@ services:
       POSTGRES_PORT: 5432
   ipfs0:
     image: ipfs/go-ipfs:v0.10.0 # update this when go-ipfs M1 macs https://github.com/ipfs/go-ipfs/issues/8645
-    volumes:
-      - ./compose/ipfs0:/data/ipfs
 
   auth_proxy:
     image: nginx
@@ -67,5 +65,3 @@ services:
       CLUSTER_MONITORPINGINTERVAL: 2s # Speed up peer discovery
     ports:
       - '127.0.0.1:9094:9094'
-    volumes:
-      - ./compose/cluster0:/data/ipfs-cluster
