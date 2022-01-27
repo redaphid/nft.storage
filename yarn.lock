@@ -10305,9 +10305,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gateway-nft-storage@workspace:packages/gateway":
+"gateway@workspace:packages/gateway":
   version: 0.0.0-use.local
-  resolution: "gateway-nft-storage@workspace:packages/gateway"
+  resolution: "gateway@workspace:packages/gateway"
   dependencies:
     "@sentry/cli": ^1.71.0
     ava: ^3.15.0

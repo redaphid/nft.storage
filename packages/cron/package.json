@@ -7,8 +7,8 @@
   "type": "module",
   "bin": {
     "nftstorage-metrics": "src/bin/metrics.js",
-    "nftstorage-pins": "src/bin/pins.js",
-    "nftstorage-pinata": "src/bin/pinata.js"
+    "nftstorage-pinata": "src/bin/pinata.js",
+    "nftstorage-pins": "src/bin/pins.js"
   },
   "scripts": {
     "start": "run-s start:*",
