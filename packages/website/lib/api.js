@@ -9,7 +9,11 @@ let token
 let created = Date.now() / 1000
 
 export async function getToken() {
-  return "doesn't matter"
+  const res = await fetch(API + '/internal/tokens')
+  const body = await res.json()
+  const token = body.value[0].secret
+  console.log({ token })
+  return token
 }
 
 /**
