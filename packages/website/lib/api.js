@@ -9,13 +9,7 @@ let token
 let created = Date.now() / 1000
 
 export async function getToken() {
-  const magic = getMagic()
-  const now = Date.now() / 1000
-  if (token === undefined || now - created > LIFESPAN - 10) {
-    token = await magic.user.getIdToken({ lifespan: LIFESPAN })
-    created = Date.now() / 1000
-  }
-  return token
+  return "doesn't matter"
 }
 
 /**

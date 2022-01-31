@@ -50,14 +50,7 @@ export async function login(token, type = 'magic', data = {}, version = '') {
 }
 
 export async function isLoggedIn() {
-  try {
-    const meta = await getMagic().user.getMetadata()
-    return {
-      ...meta, // we dont actually need the user info
-    }
-  } catch {
-    // do nothing
-  }
+  return {}
 }
 
 /**
