@@ -1,12 +1,7 @@
-import { getMagic } from './magic'
+// import { getMagic } from './magic'
 import constants from './constants'
 
 export const API = constants.API
-
-const LIFESPAN = 60 * 60 * 2 // 2 hours
-/** @type {string | undefined} */
-let token
-let created = Date.now() / 1000
 
 export async function getToken() {
   const res = await fetch(API + '/internal/tokens')
