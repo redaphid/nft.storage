@@ -29,8 +29,11 @@ services:
   ipfs0:
     container_name: ipfs0
     image: ipfs/go-ipfs:v0.10.0 # update this when go-ipfs M1 macs https://github.com/ipfs/go-ipfs/issues/8645
-    volumes:
-      - ./compose/ipfs0:/data/ipfs
+    # volumes:
+    #   - ./compose/ipfs0:/data/ipfs
+    ports:
+      - 5001:5001
+      - 8080:8080
 
   cluster0:
     container_name: cluster0
@@ -48,16 +51,14 @@ services:
       CLUSTER_RESTAPI_CORSALLOWEDHEADERS: authorization
       CLUSTER_MONITORPINGINTERVAL: 2s # Speed up peer discovery
     ports:
-      - '127.0.0.1:9094:9094'
-    volumes:
-      - ./compose/cluster0:/data/ipfs-cluster
+      - '9094:9094'
+    # volumes:
+    #   - ./compose/cluster0:/data/ipfs-cluster
 
   auth_proxy:
     image: nginx
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     network_mode: host
-    # ports:
-    #   - 4001:8080
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
